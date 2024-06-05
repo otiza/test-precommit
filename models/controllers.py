@@ -3,6 +3,7 @@ from odoo.http import request
 
 class OrdonnanceController(http.Controller):
 
+
     @http.route('/web/binary/download_ordonnance_pdf/<int:ordonnance_id>', type='http', auth="user")
     def download_ordonnance_pdf(self, ordonnance_id, **kwargs):
         ordonnance = request.env['gestion.clinique.ordonnance'].browse(ordonnance_id)
@@ -10,7 +11,7 @@ class OrdonnanceController(http.Controller):
             return request.not_found()
         
         pdf_content = ordonnance.download_pdf()
-        pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_number
+        pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_numberrr
 
         return request.make_response(pdf_content, 
                                      headers=[('Content-Type', 'application/pdf'),
