@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id='menu_hospital_root'
+    name='hospital'
+    sequence='10'/>
+    <!--patient-->
+    <menuitem id='menu_hospital_operations'
+    name='Patient'
+    sequence='10'/>
+    <menuitem id='menu_patients1'
+    name='liste des patient'
+    parent="menu_hospital_operations"
+    action='action_hospital_patient'/>
+    <menuitem id="menu_hospital_diagnostic" 
+    name="Diagnostics" 
+    parent="menu_hospital_operations"
+    action="action_diagnostic"/>
+    <menuitem id='menu_patients2_2'
+    name='ordonnance'
+    parent="menu_hospital_operations"
+    action='action_hospital_ordonnance_form'/>
+    <menuitem id='menu_patients2_3'
+    name='sysmptome'
+    parent="menu_hospital_operations"
+    action='action_hospital_symptome'/>
+    <menuitem id='menu_patients2_5'
+    name='maladie'
+    parent="menu_hospital_operations"
+    action='action_hospital_maladie'/>
+    <menuitem id='menu_patients2_6'
+    name='Paiment'
+    parent="menu_hospital_operations"
+    action='action_paiment'/>
+    <!--rendez-vous-->
+    <menuitem id='menu_hospital_oppointements'
+    name='Rendez vous'
+    sequence='20'/>
+    <menuitem id='menu_rendezvous'
+    name='list des rendez-vous'
+    parent="menu_hospital_oppointements"
+    action='action_hospital_appointment'/>
+    <!--operation-->
+    <menuitem id='menu_hospital_operation'
+    name='operation'
+    sequence='30'/>
+    <menuitem id='menu_hospital_operation_list'
+    name='listes des operations'
+    parent='menu_hospital_operation'
+    action='action_hospital_operation'/>
+    <menuitem id='menu_opération1'
+    name='Opérations en Cours'
+    parent="menu_hospital_operation"
+    action='action_operations_in_progress'/>
+    <menuitem id='menu_opération3'
+    name='Opérations annules'
+    parent="menu_hospital_operation"
+    action='action_operations_annuler'/>
+    <menuitem id='menu_opération2'
+    name='Historique des Opérations'
+    parent="menu_hospital_operation"
+    action='action_operations_history'/>
+    <!--medecin-->
+    <menuitem id='menu_hospital_medecin'
+    name='Medecin'
+    sequence='40'/>
+    <menuitem id='menu_medecin1'
+    name='list des medecins'
+    parent="menu_hospital_medecin"
+    action='action_hospital_medecin'/>
+    <menuitem id='menu_medecine2'
+    name='Horaires de dispo'
+    parent="menu_hospital_medecin"
+    action='action_horaire_dispo'/>
+    
+    <!--medicament-->
+    
+     <menuitem id="menu_gestion_clinique" name="Médicaments" 
+    />
+        <menuitem id="menu_medicament_tree" name="Gestion des Médicaments" parent="menu_gestion_clinique" action="action_medicament_tree"/>
+        <menuitem id="menu_medicament_form" name="Formulaire de Médicament" parent="menu_gestion_clinique" action="action_medicament_form" />
+        <menuitem id="menu_medicament_graph" name="Graphique de Stock" parent="menu_gestion_clinique" action="action_medicament_graph"/>
+        <menuitem id="menu_medicament_kanban" name="Médicaments (Kanban)" parent="menu_gestion_clinique" action="action_medicament_kanban" />
+
+
+   
+   
+</odoo>

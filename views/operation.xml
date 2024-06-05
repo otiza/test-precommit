@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_gestion_clinique_operation_form" model="ir.ui.view">
+            <field name="name">operation.form</field>
+            <field name="model">gestion.clinique.operation</field>
+            <field name="arch" type="xml">
+                <form string="Gestion des Opérations">
+                    <sheet>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Définition de la vue formulaire  -->
+        <record id="view_gestion_clinique_operation_tree" model="ir.ui.view">
+            <field name="name">operation.tree</field>
+            <field name="model">gestion.clinique.operation</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des Opérations">
+                    <field name="patient_id" string="Nom du Patient"/>
+                    <field name="medecin_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Définition des actions pour les opérations -->
+        <record id="action_hospital_operation" model="ir.actions.act_window">
+            <field name="name">Opérations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.operation</field>
+            <field name='view_mode'>tree,form</field>
+        </record>
+
+        <record id="action_operations_in_progress" model="ir.actions.act_window">
+            <field name="name">Opérations en cours</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.operation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'in_progress')]</field>
+        </record>
+
+        <record id="action_operations_annuler" model="ir.actions.act_window">
+            <field name="name">Opérations en cours</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.operation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'cancelled')]</field>
+        </record>
+
+        <record id="action_operations_history" model="ir.actions.act_window">
+            <field name="name">Historique des opérations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.operation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'done')]</field>
+        </record>
+        
+    </data>
+</odoo>

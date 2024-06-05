@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_kanban_patient" model="ir.ui.view">
+            <field name="name">patient.kanban</field>
+            <field name="model">gestion.clinique.patient</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <div class="oe_kanban_content" style="display: flex; align-items: center;">
+                                        <div class="oe_kanban_left" style="flex: 1;">
+                                            <img t-att-src="kanban_image('gestion.clinique.patient', 'image', record.id.raw_value)" class="img img-responsive" style="max-width: 40%; max-height: 80%;"/>
+                                        </div>
+                                        <div style="position: absolute; top: 10px; right: 65px; text-align: left;">
+                                            <span>Nom: </span>
+                                            <field name="name"/>
+                                            <br/>
+                                            <span>Age : </span>
+                                            <field name="age"/>
+                                            <span> ans</span>
+                                            <br/>
+                                            <span>Gengre : </span>
+                                            <field name="gender"/>
+                                            <br/>
+                                            <span>ville : </span>
+                                            <field name="city"/>
+                                            <br/>
+                                            <span>Doc : </span>
+                                            <field name="first_doctor_id"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vue formulaire pour les patients -->
+        <record id="view_form_patient" model="ir.ui.view">
+            <field name="name">patient.form</field>
+            <field name="model">gestion.clinique.patient</field>
+            <field name="arch" type="xml">
+                <form string="Fiche Patient">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Détails du Patient</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"  required="1"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;" />
+                            </group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar" size="large"/>
+                            </group>
+                        </group>
+                        <separator style="margin: 10px 0; border-top: 1px solid #d6d6d6;"/>
+                        <group>
+                            <group>
+                                <field name="gender"  required="1" style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                <field name="identity_number"  required="1"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                <field name="first_doctor_id"  required="1"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                            </group>
+                            <group>
+                                <field name="address"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                <field name="date_naissance"  required="1"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                <field name="age"  required="1" style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                            </group>
+                            <div style="clear:both;"></div>
+                        </group>
+
+                        <notebook>
+                            <page string="Informations générales" name="contact">
+                                <group class="oe_form_group oe_left oe_width_full">
+                                    <group>
+                                        <field name="address"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="city"  required="1"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="country" style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="tribu"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="Religion"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                    </group>
+                                    <group>
+                                        <field name="zip_code"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="phone"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="email"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="Statut_matrimonial"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="metier"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Informations médicales" name="medical">
+                                <group class="oe_form_group oe_left oe_width_full">
+                                    <group>
+                                        <field name="blood_type"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="height"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="weight"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="allergies"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="medical_history"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                    </group>
+                                    <group>
+                                        <field name="temperature"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="respiratory_rate"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="blood_pressure_systolic"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="blood_pressure_diastolic"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                        <field name="heart_rate"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                           
+                            <page string="Alertes médicales" name="alert">
+                                <group class="oe_form_group oe_left oe_width_full">
+                                    <field name="medical_alert" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                    <field name="previous_medical_history" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                    <field name="Maladie_genetique" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                </group>
+                                <group string="Alertes médicales" style="color: green;">
+                                    <style>
+                                        .o_table_style {
+                                            border-collapse: collapse;
+                                            width: 200%;
+                                        }
+                                        .o_table_style th, .o_table_style td {
+                                            border: 1px solid black;
+                                            padding: 8px;
+                                            text-align: left;
+                                        }
+                                    </style>
+                                    <table class="o_list_view o_list_view_ungrouped o_table_style">
+                                        <thead>
+                                            <tr class="o_data_row">
+                                                <th class="o_column_sortable">Disease</th>
+                                                <th class="o_column_sortable">Concerned Doctor</th>
+                                                <th class="o_column_sortable">Medical Treatment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ui-sortable">
+                                            <tr class="o_data_row">
+                                                <td><field name="disease"/></td>
+                                                <td><field name="concerned_doctor"/></td>
+                                                <td><field name="medical_treatment"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </group>
+                                <group string="Alertes médicales de la famille" style="color: green;">
+                                    <style>
+                                        .o_table_style {
+                                            border-collapse: collapse;
+                                            width: 200%;
+                                        }
+                                        .o_table_style th, .o_table_style td {
+                                            border: 1px solid black;
+                                            padding: 8px;
+                                            text-align: left;
+                                        }
+                                    </style>
+                                      
+           
+                                    <table class="o_list_view o_list_view_ungrouped o_table_style">
+                                        <thead>
+                                            <tr class="o_data_row">
+                                                <th class="o_column_sortable">Maladie</th>
+                                                <th class="o_column_sortable">(mere_pere)</th>
+                                                <th class="o_column_sortable">proche</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ui-sortable">
+                                            <tr class="o_data_row">
+                                                <td><field name="disease"/></td>
+                                                <td><field name="mere_pere"/></td>
+                                                <td><field name="proche"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </group>
+                            </page>
+
+                           <page string="Informations sur les opérations" name="operation_info">
+    <group class="oe_form_group oe_left oe_width_full">
+        <group string="Informations sur les opérations" style="color: green;">
+            <style>
+                .o_table_style {
+                    border-collapse: collapse;
+                    width: 400%;
+                    height: 100%;
+                }
+                .o_table_style th, .o_table_style td {
+                    border: 1px solid black;
+                    padding: 8px;
+                    text-align: left;
+                }
+            </style>
+            
+              <table class="o_list_view o_list_view_ungrouped o_table_style">
+            <thead>
+                <tr class="o_data_row">
+                    <th class="o_column_sortable">Date</th>
+                    <th class="o_column_sortable">Description</th>
+                    <th class="o_column_sortable">Résultat</th>
+                    <th class="o_column_sortable">Médecin Hospitalier</th>
+                </tr>
+            </thead>
+            <tbody class="ui-sortable">
+                <tr class="o_data_row">
+                    <td><field name="date"/></td>
+                    <td><field name="description"/></td>
+                    <td><field name="resultat"/></td>
+                    <td><field name="hospital_doctor"/></td>
+                </tr>
+            </tbody>
+        </table>
+        </group>
+    </group>
+    <group string="Informations supplémentaires sur les opérations" style="color: green;">
+        <field name="date_of_death"  style="border: 1px solid #ccc; border-radius: 2px; width: 23%; float: left;  height: 30px;"/>
+        <field name="cause_of_death"  style="border: 1px solid #ccc; border-radius: 2px; width: 23%; float: left;  height: 30px;"/>
+        <field name="next_of_kin"  style="border: 1px solid #ccc; border-radius: 2px; width: 23%; float: left;  height: 30px;"/>
+    </group>
+</page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action pour ouvrir la vue des patients -->
+        <record id="action_hospital_patient" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.patient</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+    </data>
+</odoo>

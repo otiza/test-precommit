@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       
+
+        <record id="action_report_ord" model="ir.actions.report">
+            <field name="name">Imprimer</field>
+            <field name="model">gestion.clinique.ordonnance</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">clinique.view_hospital_ordonnance_report</field>
+            <field name="report_file">clinique.view_hospital_ordonnance_report</field>
+            <field name="binding_model_id" ref="model_gestion_clinique_ordonnance"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

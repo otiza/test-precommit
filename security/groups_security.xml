@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_medecins" model="res.groups">
+            <field name="name">medcins</field>
+        </record>
+    </data>
+    <data>
+        <record id="group_administation" model="res.groups">
+            <field name="name">administration</field>
+        </record>
+    </data>
+</odoo>
+

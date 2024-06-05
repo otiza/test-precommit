@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        
+        <record id="view_gestion_clinique_horaire_calendar" model="ir.ui.view">
+            <field name="name">gestion.clinique.horaire.calendar</field>
+            <field name="model">gestion.clinique.horaire</field>
+            <field name="arch" type="xml">
+                <calendar string="Gestion de disponibilité" date_start="date_dispo" date_stop="end_datetime">
+                        <field name="name" string="Médecin"/>
+                </calendar>
+
+            </field>
+        </record>
+
+        
+        <record id="action_horaire_dispo" model="ir.actions.act_window">
+            <field name="name"> gestion des disponibilités des médecins</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.horaire</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_id" ref="view_gestion_clinique_horaire_calendar"/>
+        </record>
+    </data>
+</odoo>

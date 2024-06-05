@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+     <record id="view_hospital_ordonnance_list" model="ir.ui.view">
+            <field name="name">hospital.ordonnance.list</field>
+            <field name="model">gestion.clinique.ordonnance</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des Ordonnances">
+                    <field name="patient_id"/>
+                    <field name="prescription_number"/>
+                    <field name="prescription_date"/>
+                    <field name="doctor_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_hospital_ordonnance_list" model="ir.actions.act_window">
+            <field name="name">Liste des Ordonnances</field>
+            <field name="res_model">gestion.clinique.ordonnance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hospital_ordonnance_form"/>
+            <field name="target">current</field>
+        </record>
+       
+        <record id="view_hospital_ordonnance_form" model="ir.ui.view">
+            <field name="name">hospital.ordonnance.form</field>
+            <field name="model">gestion.clinique.ordonnance</field>
+            <field name="arch" type="xml">
+                <form string="Ordonnance" class="container-style">
+                    <header>
+                    
+                        <div style="text-align:center;">
+                            <h1>Clinique Merychahd</h1>
+                            <br/>
+                            <h2>Ordonnance Médicale</h2>
+                        </div>
+                    </header>
+                    <sheet>
+                        <style>
+                            .minimize-width {
+                                max-width: 800px; /* Définir la largeur maximale souhaitée */
+                                margin: 0 auto; /* Centrer le contenu horizontalement */
+                            }                             
+
+                        </style>
+                                                <div class="minimize-width">
+                             <img src="" alt="Logo" style="width: 80px; height: 80px; float: left; margin-right: 18px;"/>
+                            <div style="text-align:right;">
+                                <p style="font-weight:bold;">deuxième étage, salle 201</p>
+                                <br/>
+                                <p>à Essaouira, au Maroc</p>
+                            </div>
+                            <hr style="border-top: 2px solid black;"/>
+
+                            <div>
+                        <span style="margin-right: 10px;">Patient : </span>
+                        <field name="patient_id" options="{'no_open': True}" placeholder="Nom"/>
+                    </div>
+                    <br/>
+                    <div style="display: flex; align-items: center; margin-top: 10px;">
+                        <span style="margin-right: 10px;">Age : </span>
+                        <field name="age" style="display: inline;"/>
+                        <span style="margin-left: 5px; margin-right: 20px;">ans</span>
+                        
+                        <span style="margin-right: 10px;">Gender : </span>
+                        <field name="gender" style="display: inline;"/>
+                        
+                        <span style="margin-left: 20px; margin-right: 10px;">Numero : </span>
+                        <field name="file_number" style="display: inline;"/>
+                    </div>
+                            <br/>
+                            <div style="display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">Prescription Number : </span>
+                                <field name="prescription_number" style="display: inline;"/>
+                                <span style="margin-left: 20px; margin-right: 50px;">Prescription Date : </span>
+                        <field name="prescription_date" readonly="1" style="display: inline;"/>
+                            </div>
+                            
+                             <hr style="border-top: 6px solid black;"/>
+
+                            <div>
+                            
+                            <field name="medicament_ids" mode="tree,form" options="{'add_record': True, 'edit': False}"/>
+
+                            </div>
+                            <hr style="border-top: 6px solid black;"/>
+                           <div style="text-align:right; margin-top: 20px;">
+                                <span style="font-weight: bold; font-size: 16px;">Total des Prix : </span>
+                                <field name="total_price" readonly="1" widget="monetary"/>
+                                <span> Dh</span>
+                                <br/>
+                                <span style="font-weight: bold; font-size: 16px;">Tax (15%) : </span>
+                                <field name="tax_amount" readonly="1" widget="monetary"/>
+                                 <span> Dh</span>
+
+                               <br/>
+                                <span>___________________________</span> <br/>
+                                <span style="font-weight: bold; font-size: 16px;">Total à Payer : </span>
+                                <field name="total_to_pay" readonly="1" widget="monetary"/>
+                                <span> Dh</span>
+
+                            </div>
+                             <br/>
+                            <div style="text-align:left; margin-top: 20px;">
+                                <span style="font-weight: bold; font-size: 16px;">Nom du Médecin : </span>
+                                <field name="doctor_id"/>
+                                <br/>
+                                
+                                <field name="signature" widget="image" style="width: 400px; height: 400px;"/>
+
+                            </div>
+                        </div>
+                    </sheet>
+                     
+        
+                </form>
+            </field>
+        </record>
+
+        <!-- Action  -->
+        <record id="action_hospital_ordonnance_form" model="ir.actions.act_window">
+            <field name="name">Ordonnance</field>
+            <field name="res_model">gestion.clinique.ordonnance</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hospital_ordonnance_form"/>
+            <field name="target">current</field>
+        </record>
+    </data>
+</odoo>

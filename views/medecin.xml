@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <record id="view_kanban_medecin" model="ir.ui.view">
+            <field name="name">patient.medecin</field>
+            <field name="model">gestion.clinique.medecin</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <div class="oe_kanban_content" style="display: flex; align-items: center;">
+                                        <div class="oe_kanban_left" style="flex: 1;">
+                                            <img t-att-src="kanban_image('gestion.clinique.medecin', 'image', record.id.raw_value)" class="img img-responsive" style="max-width: 40%; max-height: 80%;"/>
+                                        </div>
+                                        <div style="position: absolute; top: 10px; right: 65px; text-align: left;">
+                                            <span>Nom: </span>
+                                            <field name="name"/>
+                                            <br/>
+                                            <span>Age : </span>
+                                            <field name="age"/>
+                                            <span> ans</span>
+                                            <br/>
+                                            <span>Gengre : </span>
+                                            <field name="gender"/>
+                                            <br/>
+                                            <span>ville : </span>
+                                            <field name="city"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- Action pour le médecin -->
+        <record id="action_hospital_medecin" model="ir.actions.act_window">
+            <field name="name">Médecin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gestion.clinique.medecin</field>
+            <field name='view_mode'>kanban,form</field>
+        </record>
+        
+        <!-- Vue formulaire pour les patients -->
+        <record id="view_form_medecin" model="ir.ui.view">
+            <field name="name">medecin.form</field>
+            <field name="model">gestion.clinique.medecin</field>
+            <field name="arch" type="xml">
+                <form string="Fiche médecin">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Détails du Médecin</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar" size="large" />
+                            </group>
+                            <separator style="margin: 10px 0; border-top: 1px solid #d6d6d6;"/>
+                            <group>
+                                <field name="gender" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                <field name="identity_number" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                <field name="speciality" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                
+                    
+                            </group>
+                            <group>                        
+                                <field name="education" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left; height: 30px;"/>
+                                <field name="date_naissance"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+                                <field name="age"  style="border: 1px solid #ccc; border-radius: 2px; width: 63%; float: left;  height: 30px;"/>
+    
+                            </group>
+                        </group>
+                        <div style="clear:both;"></div>
+
+                        <notebook>
+                            
+                            <page string="Informations générales" name="contctm">
+                                <group class="oe_form_group oe_left oe_width_full">
+                                    <group>
+                                        <field name="address" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;" />
+                                        <field name="city" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                        <field name="country" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                        <field name="Religion" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                    </group>
+                                    <group>
+                                        <field name="zip_code" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                        <field name="phone" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                        <field name="email" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                        <field name="Statut_matrimonial" style="border: 1px solid #ccc; border-radius: 2px; width: 50%; float: left;  height: 30px;"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                          
+                            <page string="Informations médicales" name="medical_info">
+                            
+                            <group>
+                               
+                                
+                                <field name="signature_field" widget="signature" options="{'fullWidth': False}" style="width: 30%; height: 50px;"/>
+
+                            </group>
+                            </page>
+                            <page string="Médecin non Officiel" name="medecin_status">
+                            <group>
+                                <field name="operation_type"  style="border: 1px solid #ccc; border-radius: 2px; width: 23%; float: left;  height: 30px;"/>
+                                <field name="amount_to_pay"  style="border: 1px solid #ccc; border-radius: 2px; width: 23%; float: left;  height: 30px;"/>
+                            </group>
+                            </page>
+                            
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

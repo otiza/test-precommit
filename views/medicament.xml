@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vue de la Liste des Médicaments -->
+        <record id="view_medicament_tree" model="ir.ui.view">
+            <field name="name">gestion.clinique.medicament.tree</field>
+            <field name="model">gestion.clinique.medicament</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des Médicaments">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="posologie"/>
+                    <field name="prix_unitaire"/>
+                    <field name="stock"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue de Formulaire pour les Médicaments -->
+        <record id="view_medicament_form" model="ir.ui.view">
+            <field name="name">gestion.clinique.medicament.form</field>
+            <field name="model">gestion.clinique.medicament</field>
+            <field name="arch" type="xml">
+                <form string="Formulaire de Médicament">
+                    <sheet>
+                        <div class="oe_title" style="margin-bottom: 20px;">
+                            <h1 style="color: blue;">Gestion des médicaments</h1>
+                        </div>
+                        <div style="max-width: 1200px; margin: 0 auto;">
+                            <div style="display: flex;">
+                                <div style="flex: 1;">
+                                    <group>
+                                        <field name="name" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="description" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="posologie" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="prix_unitaire" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="stock" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="categorie" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                        <field name="stock_status" style="border: 1px solid #ccc; border-radius: 2px; height: 30px;"/>
+                                    </group>
+                                </div>
+                                <div style="flex: 0 0 600px; margin-left: 20px; text-align: center;">
+                                    <span style="display: block; font-size: 16px; font-weight: bold; margin-top: 10px;">Image de Médicament</span>
+                                    <field name="image" widget="image" style="max-width: 250px; max-height: 250px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Graphique pour les Médicaments -->
+        <record id="view_medicament_graph" model="ir.ui.view">
+            <field name="name">gestion.clinique.medicament.graph</field>
+            <field name="model">gestion.clinique.medicament</field>
+            <field name="arch" type="xml">
+                <graph string="Graphique de Stock" type="bar">
+                    <field name="stock" type="measure"/>
+                    <field name="name" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Vue Kanban avec Widget de Jauge -->
+        <record id="view_medicament_kanban" model="ir.ui.view">
+            <field name="name">gestion.clinique.medicament.kanban</field>
+            <field name="model">gestion.clinique.medicament</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="stock"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div>
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                <div>
+                                    <span>Stock: <field name="stock"/></span>
+                                </div>
+                                <div class="o_gauge">
+                                    <field name="stock" widget="gauge" options="{
+                                        'min_field': 0,
+                                        'max_field': 100,
+                                        'max_value': 100,
+                                        'green_range': [90, 100],
+                                        'yellow_range': [50, 90],
+                                        'red_range': [0, 50]
+                                    }"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Actions pour Ouvrir les Vues -->
+        <record id="action_medicament_tree" model="ir.actions.act_window">
+            <field name="name">Gestion des Médicaments (Liste)</field>
+            <field name="res_model">gestion.clinique.medicament</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_medicament_tree"/>
+        </record>
+
+        <record id="action_medicament_form" model="ir.actions.act_window">
+            <field name="name">Formulaire de Médicament</field>
+            <field name="res_model">gestion.clinique.medicament</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_medicament_form"/>
+        </record>
+
+        <record id="action_medicament_graph" model="ir.actions.act_window">
+            <field name="name">Graphique de Stock (Médicaments)</field>
+            <field name="res_model">gestion.clinique.medicament</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_medicament_graph"/>
+        </record>
+
+        <record id="action_medicament_kanban" model="ir.actions.act_window">
+            <field name="name">Médicaments (Kanban)</field>
+            <field name="res_model">gestion.clinique.medicament</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_medicament_kanban"/>
+        </record>
+                <!-- notifications-->
+        <record id="ir_cron_check_low_stock" model="ir.cron">
+            <field name="name">Check Low Stock</field>
+            <field name="model_id" ref="model_gestion_clinique_medicament"/>
+            <field name="state">code</field>
+            <field name="code">model.send_low_stock_notification()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+
+       
+    </data>
+</odoo>
