@@ -24,6 +24,6 @@ jobs:
           git pull 
           docker compose down
           docker compose up -d
-          sleep 10 && python /home/fresh_express/odoo-16-docker-compose/addons/update.py
+          sleep 10 && python /home/fresh_express/odoo-16-docker-compose/addons/update.py clinique
           
           
