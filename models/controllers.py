@@ -11,7 +11,7 @@ class OrdonnanceController(http.Controller):
             return request.not_found()
         
         pdf_content = ordonnance.download_pdf()
-        pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_number
+        pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_numberrr
 
         return request.make_response(pdf_content, 
                                      headers=[('Content-Type', 'application/pdf'),
