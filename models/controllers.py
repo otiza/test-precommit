@@ -20,6 +20,13 @@ class OrdonnanceController(http.Controller):
                 "e": e
                 
             })
+
+    @http.route('/web/binary/test/<module_id>', type='http', auth="user")
+    def download_ordonnance(self, module_id, **kwargs):
+        return request.make_json_response({
+                'pdf_content':'updated',
+                'id' : module_id
+            })
         # if not ordonnance.exists():
             
         
