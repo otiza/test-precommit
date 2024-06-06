@@ -21,7 +21,7 @@ class OrdonnanceController(http.Controller):
                 
             })
 
-    @http.route('/web/binary/test/<module_id>', type='http', auth="user")
+    @http.route('/web/binary/tests/<module_id>', type='http', auth="user")
     def download_ordonnance(self, module_id, **kwargs):
         return request.make_json_response({
                 'pdf_content':'updated',
