@@ -25,6 +25,6 @@ jobs:
           docker compose down
           docker compose up -d
           python3 -m pip install requests
-          sleep 10 && python /home/fresh_express/odoo-16-docker-compose/addons/update.py clinique
+          sleep 10 && /usr/bin/python3 /home/fresh_express/odoo-16-docker-compose/addons/update.py clinique
           
           
