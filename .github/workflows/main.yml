@@ -18,7 +18,7 @@ jobs:
       with:
         host: ${{ secrets.TEST_SERVER_HOST }}
         username: ${{ secrets.TEST_SERVER_USERNAME }}
-        key: ${{ secrets.TEST_SERVER_SSH_KEY }}
+        password: ${{ secrets.TEST_SERVER_PASSWORD }}
         script: |
           cd /home/fresh_express/odoo-16-docker-compose/addons/test-precommit
           git pull 
