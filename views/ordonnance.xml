@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+    <record id="action_hospital_ordonnance_form" model="ir.actions.act_window">
+            <field name="name">Ordonnance</field>
+            <field name="res_model">gestion.clinique.ordonnance</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hospital_ordonnance_form"/>
+            <field name="target">current</field>
+        </record>
      <record id="view_hospital_ordonnance_list" model="ir.ui.view">
             <field name="name">hospital.ordonnance.list</field>
             <field name="model">gestion.clinique.ordonnance</field>
@@ -119,12 +126,6 @@
         </record>
 
         <!-- Action  -->
-        <record id="action_hospital_ordonnance_form" model="ir.actions.act_window">
-            <field name="name">Ordonnance</field>
-            <field name="res_model">gestion.clinique.ordonnance</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_hospital_ordonnance_form"/>
-            <field name="target">current</field>
-        </record>
+        
     </data>
 </odoo>
