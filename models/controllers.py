@@ -4,20 +4,29 @@ from odoo.http import request
 class OrdonnanceController(http.Controller):
 
 
-    @http.route('/web/binary/download_ordonnance_pdf/<ordonnance_id>', type='http', auth="user")
-    def download_ordonnance_pdf(self, ordonnance_id, **kwargs):
-        ordonnance = request.env['gestion.clinique.ordonnance'].browse(ordonnance_id)
-        return request.make_json_response({
-            'pdf_content':'hola',
-            'pdf_name': ordonnance_id,
-        })
-        if not ordonnance.exists():
-            return request.not_found()
+    @http.route('/web/binary/update/<module_id>', type='http', auth="user")
+    def download_ordonnance_pdf(self, module_id, **kwargs):
+        try:
+            portal_module = request.env['ir.module.module'].search([('name', '=', module_id)])
+            if not portal_module.exists():
+                return request.not_found()
+            portal_module.button_immediate_upgrade()
+            return request.make_json_response({
+                'pdf_content':'updated'
+            })
+        except e:
+            return request.make_json_response({
+                'pdf_content':'not updated',
+                "e": e
+                
+            })
+        # if not ordonnance.exists():
+            
         
-        pdf_content = ordonnance.download_pdf()
-        pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_number
+        # pdf_content = ordonnance.download_pdf()
+        # pdf_name = 'Ordonnance_%s.pdf' % ordonnance.prescription_number
 
-        return request.make_response(pdf_content, 
-                                     headers=[('Content-Type', 'application/pdf'),
-                                              ('Content-Disposition', 'attachment; filename="%s"' % pdf_name)])
+        # return request.make_response(pdf_content, 
+        #                              headers=[('Content-Type', 'application/pdf'),
+        #                                       ('Content-Disposition', 'attachment; filename="%s"' % pdf_name)])
 
