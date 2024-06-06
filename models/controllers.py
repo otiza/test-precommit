@@ -4,12 +4,12 @@ from odoo.http import request
 class OrdonnanceController(http.Controller):
 
 
-    @http.route('/web/binary/download_ordonnance_pdf/<int:ordonnance_id>', type='http', auth="user")
+    @http.route('/web/binary/download_ordonnance_pdf/<ordonnance_id>', type='http', auth="user")
     def download_ordonnance_pdf(self, ordonnance_id, **kwargs):
         ordonnance = request.env['gestion.clinique.ordonnance'].browse(ordonnance_id)
         return request.make_json_response({
             'pdf_content':'hola',
-            'pdf_name': 'pussy',
+            'pdf_name': ordonnance_id,
         })
         if not ordonnance.exists():
             return request.not_found()
